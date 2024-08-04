@@ -5,7 +5,7 @@ import os
 import shutil
 
 
-class ParentWindow (Frame):
+class GUI (Frame):
     def __init__(self, master):
         Frame.__init__(self)
         self.master.title("Transfer All Files To New Folder")
@@ -30,16 +30,20 @@ class ParentWindow (Frame):
         self.transferButton = Button(text="Transfer All Files", width = 20, height=2, bg="palegreen", command=self.transferFiles)
         self.transferButton.grid(row=2, column=1, padx=(20, 0), pady=(10, 25), sticky=W)        # padx is the same as the Entry display areas to ensure its left edge lines up vertically underneath
 
+        # Exit button:
+        self.exitButton = Button(text="Exit Program", width=13, height=2, fg="darkred", bg="pink", command=self.exitProgram)
+        self.exitButton.grid(row=2, column=2, padx=(0, 10), pady=(10, 25), sticky=E)
+
 
 
     # Function to select the source directory:
     def sourceDir(self):
         selectSourceDirectory = tkinter.filedialog.askdirectory()
 
-        # Clear contents of the source Entry widget to allow the newly selected path to be inserted:
+        # Clear contents of the source Entry widget (from index zero thru the end) to allow the newly selected path to be inserted:
         self.sourceDirectoryEntry.delete(0, END)
 
-        # Insert the file path of the folder that the user chose into the source Entry widget:
+        # Insert the file path of the folder that the user clicks on into the source Entry widget:
         self.sourceDirectoryEntry.insert(0, selectSourceDirectory)
 
 
@@ -50,7 +54,7 @@ class ParentWindow (Frame):
         # Clear contents of destination Entry widget to allow the newly selected file path to be inserted:
         self.destinationDirectoryEntry.delete(0, END)
 
-        # Insert into the destination Entry widget the file path of the folder the user selected:
+        # Insert into the destination Entry widget the file path of the folder the user clicks on:
         self.destinationDirectoryEntry.insert(0, selectDestinationDirectory)
 
 
@@ -67,6 +71,14 @@ class ParentWindow (Frame):
             shutil.move(source + '/' + iteration, destination)
             # Confirm file transfer in console:
             print('\n ✔️ ' + iteration + ' successfully transferred to \n' + destination)
+
+
+    # Function to exit program:
+    def exitProgram(self):
+        # Terminate the main GUI window and all windows inside of it
+        root.destroy()
+
+
 
 
 if __name__ == "__main__":
