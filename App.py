@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import *
+from tkinter import messagebox
 import tkinter.filedialog
 import os
 import shutil
@@ -31,7 +32,7 @@ class GUI (Frame):
         self.transferButton.grid(row=2, column=1, padx=(20, 0), pady=(10, 25), sticky=W)        # padx is the same as the Entry display areas to ensure its left edge lines up vertically underneath
 
         # Exit button:
-        self.exitButton = Button(text="Exit Program", width=13, height=2, fg="darkred", bg="pink", command=self.exitProgram)
+        self.exitButton = Button(text="Exit", width=8, height=2, fg="darkred", bg="pink", command=self.exitProgram)
         self.exitButton.grid(row=2, column=2, padx=(0, 10), pady=(10, 25), sticky=E)
 
 
@@ -75,8 +76,10 @@ class GUI (Frame):
 
     # Function to exit program:
     def exitProgram(self):
-        # Terminate the main GUI window and all windows inside of it
-        root.destroy()
+        # Use Messagebox class's built-in "askokcancel()" method to create a pop-up with two button choices -- "OK" or "Cancel". The first parameter of this method will be the name of the pop-up window; the second parameter is the message inside the pop-up box.
+        if messagebox.askokcancel("Confirm", "EXIT PROGRAM?", icon='warning'):
+            # Terminate the GUI window and all widgets inside of it
+            root.destroy()
 
 
 
@@ -85,3 +88,4 @@ if __name__ == "__main__":
     root = tk.Tk()
     App = GUI(root)
     root.mainloop
+
