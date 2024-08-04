@@ -32,6 +32,30 @@ class GUI (Frame):
 
 
 
+ # Function to select the source directory:
+    def sourceDir(self):
+        selectSourceDirectory = tkinter.filedialog.askdirectory()
+
+        # Clear contents of the source Entry widget (from index zero thru the end) to allow the newly selected path to be inserted:
+        self.sourceDirectoryEntry.delete(0, END)
+
+        # Insert the file path of the folder that the user clicks on into the source Entry widget:
+        self.sourceDirectoryEntry.insert(0, selectSourceDirectory)
+
+
+    # Function to select the destination directory:
+    def destiDir(self):
+        selectDestinationDirectory = tkinter.filedialog.askdirectory()
+
+        # Clear contents of destination Entry widget to allow the newly selected file path to be inserted:
+        self.destinationDirectoryEntry.delete(0, END)
+
+        # Insert into the destination Entry widget the file path of the folder the user clicks on:
+        self.destinationDirectoryEntry.insert(0, selectDestinationDirectory)
+
+
+
+
 if __name__ == "__main__":
     root = tk.Tk()
     App = GUI(root)
