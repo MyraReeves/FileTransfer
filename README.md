@@ -1,3 +1,3 @@
-# 📂 FileTransfer 📁
+# 📂 File Transfer App 📁
 
-School Assignment = A simple app to move a group of files from one folder to another.  The assignment specified that a user should have the choice between transferring either all of the files or only those that had been modified within the past 24 hours.
+This school assignment was to create a simple app able to move an unfiltered group of files from one directory to another.  The user has a choice between transferring either all of the files or only those modified within the past 24 hours.
